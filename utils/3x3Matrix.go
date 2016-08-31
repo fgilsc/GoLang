@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func suma(matrixA [3][3]int, matrixB [3][3]int) [3][3]int {
 	var res [3][3]int
@@ -57,6 +60,18 @@ func multiplica(matrixA [3][3]int, matrixB [3][3]int) [3][3]int {
 
 }
 
+func det(matrix [3][3]int) int { //Sarrus 3x3
+	d1 := matrix[0][0] * matrix[1][1] * matrix[2][2]
+	s11 := matrix[0][1] * matrix[1][2] * matrix[2][0]
+	s12 := matrix[0][2] * matrix[1][0] * matrix[2][1]
+	d2 := matrix[0][2] * matrix[1][1] * matrix[2][0]
+	s21 := matrix[0][0] * matrix[1][2] * matrix[2][1]
+	s22 := matrix[1][0] * matrix[0][1] * matrix[2][2]
+
+	res := (d1 + s11 + s12) - (d2 + s21 + s22)
+	return res
+}
+
 //Testing Area
 func main() {
 	A := [3][3]int{{1, 2, 6}, {9, 5, 1}, {4, 2, 8}}
@@ -66,4 +81,7 @@ func main() {
 	for fila := 0; fila < len(C); fila++ {
 		fmt.Println(C[fila])
 	}
+	det := det(A)
+	detS := strconv.Itoa(det)
+	fmt.Println("El determinante es: " + detS)
 }
