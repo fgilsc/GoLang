@@ -5,7 +5,7 @@ import "fmt"
 func bubbleSort(array []int) []int {
 	res := array
 
-	for i := 1; i < len(res); i++ {
+	for i := 1; i <= len(res); i++ {
 		for j := 0; j < len(res)-i; j++ {
 			if res[j] > res[j+1] {
 				aux := res[j]
